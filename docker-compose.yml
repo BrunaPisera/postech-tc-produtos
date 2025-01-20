@@ -1,0 +1,37 @@
+version: '3.9'
+services:
+  produtos_db:
+      image: mongo:latest
+      restart: always
+      volumes:
+        - mongoManagement:/data/db    
+      networks:
+        - produto_network   
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: Database2023
+        MONGO_DB_NAME: produtos_db
+      container_name: produtos_db
+      ports:
+        - "27017:27017"
+  produtos_api:
+      build:
+        context: .
+        dockerfile: Produtos.API/Dockerfile
+      container_name: produto_api
+      ports: 
+      - "5000:80"   
+      depends_on:
+        - produtos_db
+      networks:
+        - produto_network
+      environment: 
+        MONGODB_URI: mongodb://root:Database2023@articles_search_db:27017/?authMechanism=SCRAM-SHA-256
+          
+        
+      
+volumes:
+  mongoManagement:
+
+networks:
+  produto_network:
