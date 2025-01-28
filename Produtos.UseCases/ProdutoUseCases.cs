@@ -5,11 +5,6 @@ using Produtos.UseCases.Exceptions;
 using Produtos.UseCases.Extensions;
 using Produtos.UseCases.Gateway;
 using Produtos.UseCases.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Produtos.UseCases
 {

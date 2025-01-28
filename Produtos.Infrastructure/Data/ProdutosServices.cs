@@ -117,16 +117,16 @@ namespace Produtos.Infrastructure.Data
                 Preco = produtoAggregate.Preco,
             };
 
-            //try
-            //{                
+            try
+            {
                 await _produtosCollection.InsertOneAsync(produto);
 
                 return true;
-            //}
-            //catch
-            //{             
-            //    return false;
-            //}
+            }
+            catch
+            {             
+                return false;
+            }
         }
 
         public async Task<bool> UpdateProdutoAsync(ProdutoAggregate produtoCadastrado)
