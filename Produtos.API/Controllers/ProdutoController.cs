@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using Produtos.Core.Entities.Enums;
 using Produtos.UseCases.Dtos;
 using Produtos.UseCases.Exceptions;
@@ -91,11 +92,12 @@ namespace Produtos.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> RemoveProduto([FromRoute] int id)
+        public async Task<IActionResult> RemoveProduto([FromRoute] string id)
         {
             try
             {
-                if (id <= 0) return BadRequest("Id nao pode ser menor ou igual a zero.");
+                if (!ObjectId.TryParse(id.ToString(), out _) || string.IsNullOrEmpty(id.ToString()))
+                    return BadRequest("Id nao pode ser nulo.");
 
                 await ProdutoApplication.RemoveProdutoAsync(id.ToString());
 
@@ -121,11 +123,12 @@ namespace Produtos.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AtualizarProduto([FromRoute] int id, [FromBody] AtualizaProdutoDto produto)
+        public async Task<IActionResult> AtualizarProduto([FromRoute] string id, [FromBody] AtualizaProdutoDto produto)
         {
             try
             {
-                if (id <= 0) return BadRequest("Id nao pode ser menor ou igual a zero.");
+                if (!ObjectId.TryParse(id.ToString(), out _) || string.IsNullOrEmpty(id.ToString()))
+                    return BadRequest("Id nao pode ser nulo.");
 
                 var produtoAtualizado = await ProdutoApplication.AtualizaProdutoAsync(id.ToString(), produto);
 
