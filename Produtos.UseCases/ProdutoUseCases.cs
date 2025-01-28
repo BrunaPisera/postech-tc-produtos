@@ -49,7 +49,7 @@ namespace Produtos.UseCases
             if (!produtoCadastrado) throw new CadastrarProdutoException("Ocorreu um erro ao cadastrar o produto");
         }
 
-        public async Task RemoveProdutoAsync(int id)
+        public async Task RemoveProdutoAsync(string id)
         {
             var produtoCadastrado = await ProdutoPersistancePort.GetProdutoByIdAsync(id);
 
@@ -60,7 +60,7 @@ namespace Produtos.UseCases
             if (!produtoRemovido) throw new RemoveProdutoException("Ocorreu um erro ao remover o produto.");
         }
 
-        public async Task<ProdutoDto> AtualizaProdutoAsync(int id, AtualizaProdutoDto produto)
+        public async Task<ProdutoDto> AtualizaProdutoAsync(string id, AtualizaProdutoDto produto)
         {
             var produtoCadastrado = await ProdutoPersistancePort.GetProdutoByIdAsync(id);
 

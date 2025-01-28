@@ -7,10 +7,9 @@ namespace Produtos.Infrastructure.Model
 {
     public class Produto
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
+        [BsonId]  
 
-        public string? Id { get; set; }
+        public ObjectId Id { get; set; }
         public string Nome { get; set; }
         public Preco Preco { get; set; }
         public Categoria Categoria { get; set; }

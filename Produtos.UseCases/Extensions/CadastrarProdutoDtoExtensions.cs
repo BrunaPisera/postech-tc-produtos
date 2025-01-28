@@ -10,10 +10,10 @@ namespace Produtos.UseCases.Extensions
         {
             if (cadastraProdutoDto == null)
             {
-                return new ProdutoAggregate();
+                return new ProdutoAggregate(new Guid().ToString());
             }
 
-            return new ProdutoAggregate()
+            return new ProdutoAggregate(new Guid().ToString())
             {
                 Nome = cadastraProdutoDto.Nome,
                 Preco = new Preco(cadastraProdutoDto.Preco),

@@ -39,10 +39,7 @@ namespace Produtos.API.Controllers
             {
                 return Conflict(ex.Message);
             }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Erro ao processar a requisição, tente novamente mais tarde.");
-            }
+            
         }
 
         [HttpGet]
@@ -100,7 +97,7 @@ namespace Produtos.API.Controllers
             {
                 if (id <= 0) return BadRequest("Id nao pode ser menor ou igual a zero.");
 
-                await ProdutoApplication.RemoveProdutoAsync(id);
+                await ProdutoApplication.RemoveProdutoAsync(id.ToString());
 
                 return NoContent();
             }
@@ -130,7 +127,7 @@ namespace Produtos.API.Controllers
             {
                 if (id <= 0) return BadRequest("Id nao pode ser menor ou igual a zero.");
 
-                var produtoAtualizado = await ProdutoApplication.AtualizaProdutoAsync(id, produto);
+                var produtoAtualizado = await ProdutoApplication.AtualizaProdutoAsync(id.ToString(), produto);
 
                 return Ok(produtoAtualizado);
             }

@@ -26,7 +26,7 @@ services:
       networks:
         - produto_network
       environment: 
-        MONGODB_URI: mongodb://root:Database2023@articles_search_db:27017/?authMechanism=SCRAM-SHA-256
+        MONGODB_URI: mongodb://root:Database2023@produtos_db:27017/?authMechanism=SCRAM-SHA-256
           
         
       
